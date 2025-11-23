@@ -65,7 +65,7 @@ html {
 
 body {
     font-family: 'Arial', sans-serif;
-    background: #b3e5fc;
+    background: #ffffff;
     overflow-x: hidden;
     overflow-y: auto;
     position: relative;
@@ -161,7 +161,7 @@ body {
 
 /* Section 1 Styles */
 .section-1 {
-    background: #b3e5fc;
+    background: #ffffff;
     position: relative;
     overflow-x: hidden;
     width: 100%;
@@ -305,7 +305,7 @@ body {
 
 /* Section 2 Styles */
 .section-2 {
-    background: #b3e5fc;
+    background: #ffffff;
     position: relative;
 }
 
@@ -548,7 +548,7 @@ body {
 
 /* Section 3 Styles */
 .section-3 {
-    background: #b3e5fc;
+    background: #ffffff;
     position: relative;
     overflow-x: hidden !important;
     overflow-y: visible;
@@ -879,7 +879,7 @@ body {
 
 /* Section 4 Styles */
 .section-4 {
-    background: #b3e5fc;
+    background: #ffffff;
     position: relative;
     overflow-x: hidden !important;
     overflow-y: visible;
@@ -1021,7 +1021,7 @@ body {
 
 /* Section 5 Styles */
 .section-5 {
-    background: #b3e5fc;
+    background: #ffffff;
     position: relative;
     min-height: auto !important;
     height: auto !important;
