@@ -65,7 +65,7 @@ html {
 
 body {
     font-family: 'Arial', sans-serif;
-    background: #ffeef2;
+    background: #b3e5fc;
     overflow-x: hidden;
     overflow-y: auto;
     position: relative;
@@ -161,7 +161,7 @@ body {
 
 /* Section 1 Styles */
 .section-1 {
-    background: #ffeef2;
+    background: #b3e5fc;
     position: relative;
     overflow-x: hidden;
     width: 100%;
@@ -305,7 +305,7 @@ body {
 
 /* Section 2 Styles */
 .section-2 {
-    background: #ffeef2;
+    background: #b3e5fc;
     position: relative;
 }
 
@@ -344,19 +344,87 @@ body {
 
 .divider {
     margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
-.v-line {
+.divider-arc {
+    width: 250px;
+    height: 30px;
+    border: 3px solid #dc143c;
+    border-bottom: none;
+    border-radius: 250px 250px 0 0;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.divider-arc::before,
+.divider-arc::after {
+    content: '❦';
+    position: absolute;
+    top: -8px;
     color: #dc143c;
-    font-size: 1.5rem;
-    line-height: 0.5;
+    font-size: 1.2rem;
+}
+
+.divider-arc::before {
+    left: 20px;
+}
+
+.divider-arc::after {
+    right: 20px;
+}
+
+.divider-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 5px 0;
+}
+
+.divider-icon {
+    font-size: 1.8rem;
+    animation: float 2s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(220, 20, 60, 0.3));
+}
+
+.divider-icon:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.divider-icon:nth-child(3) {
+    animation-delay: 0.6s;
 }
 
 .red-line {
     width: 200px;
-    height: 2px;
-    background: #dc143c;
-    margin: 10px auto;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #dc143c 20%, #dc143c 80%, transparent);
+    margin: 10px auto 0 auto;
+    border-radius: 2px;
+    position: relative;
+}
+
+.red-line::before,
+.red-line::after {
+    content: '❦';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #dc143c;
+    font-size: 1rem;
+}
+
+.red-line::before {
+    left: -25px;
+}
+
+.red-line::after {
+    right: -25px;
 }
 
 .invite-text {
@@ -480,7 +548,7 @@ body {
 
 /* Section 3 Styles */
 .section-3 {
-    background: #ffeef2;
+    background: #b3e5fc;
     position: relative;
     overflow-x: hidden !important;
     overflow-y: visible;
@@ -808,7 +876,7 @@ body {
 
 /* Section 4 Styles */
 .section-4 {
-    background: #ffeef2;
+    background: #b3e5fc;
     position: relative;
     overflow-x: hidden !important;
     overflow-y: visible;
@@ -950,7 +1018,7 @@ body {
 
 /* Section 5 Styles */
 .section-5 {
-    background: #ffeef2;
+    background: #b3e5fc;
     position: relative;
     min-height: auto !important;
     height: auto !important;

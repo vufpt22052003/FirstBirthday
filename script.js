@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     animatedElements.forEach(el => {
         observer.observe(el);
     });
-    
+
     // Khởi tạo các phần tử đầu tiên ngay lập tức
     const firstSectionElements = document.querySelectorAll('.section-1 .fade-in-up');
     firstSectionElements.forEach((el, index) => {
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             el.classList.add('visible');
         }, index * 200);
     });
-    
+
     // Khởi tạo calendar và countdown
     initCalendar();
     initCountdown();
@@ -57,7 +57,7 @@ function initCalendar() {
     
     const daysOfWeek = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
     const daysInMonth = 30;
-    
+
     // Add header
     daysOfWeek.forEach(day => {
         const dayEl = document.createElement('div');
@@ -65,7 +65,7 @@ function initCalendar() {
         dayEl.textContent = day;
         calendar.appendChild(dayEl);
     });
-    
+
     // Add empty cells for days before month starts
     // November 1, 2025 is Saturday (index 6 in our array)
     for (let i = 0; i < 6; i++) {
@@ -73,13 +73,13 @@ function initCalendar() {
         emptyEl.className = 'calendar-day';
         calendar.appendChild(emptyEl);
     }
-    
+
     // Add days
     for (let day = 1; day <= daysInMonth; day++) {
         const dayEl = document.createElement('div');
         dayEl.className = 'calendar-day number';
         dayEl.textContent = day;
-        
+
         if (day === 30) {
             dayEl.classList.add('highlight');
         }
@@ -149,7 +149,7 @@ function initCountdown() {
             if (secondsEl) secondsEl.textContent = '00';
         }
     }
-    
+
     updateCountdown();
     setInterval(updateCountdown, 1000);
 }
