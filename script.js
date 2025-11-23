@@ -16,16 +16,20 @@ document.addEventListener('gesturestart', function(e) {
     e.preventDefault();
 });
 
-// Scroll Animation với Intersection Observer
+// Scroll Animation với Intersection Observer - tối ưu
 const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    rootMargin: '0px 0px -50px 0px',
+    // Sử dụng root thay vì viewport để tối ưu performance
+    root: null
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
+            // Unobserve sau khi đã visible để giảm overhead
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
@@ -168,31 +172,50 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Parallax effect cho một số phần tử - tối ưu với requestAnimationFrame
+// Parallax effect - tối ưu với debounce và chỉ chạy khi scroll
 let ticking = false;
+let lastScrollY = 0;
+let scrollTimeout = null;
+
 function updateParallax() {
     const scrolled = window.pageYOffset;
     const parallaxElements = document.querySelectorAll('.confetti-bg');
+    
+    // Chỉ update nếu scroll position thay đổi đáng kể (> 1px)
+    if (Math.abs(scrolled - lastScrollY) < 1) {
+        ticking = false;
+        return;
+    }
+    
+    lastScrollY = scrolled;
     
     parallaxElements.forEach(element => {
         const speed = 0.5;
         element.style.transform = `translate3d(0, ${scrolled * speed}px, 0)`;
     });
     
-    // Bỏ parallax cho wavy-decorations để tránh bug
-    const wavyElements = document.querySelectorAll('.wavy-decorations');
-    wavyElements.forEach(element => {
-        element.style.transform = 'translate3d(0, 0, 0)';
-    });
-    
     ticking = false;
 }
 
+// Debounce scroll event để tránh quá nhiều updates
 window.addEventListener('scroll', () => {
     if (!ticking) {
         window.requestAnimationFrame(updateParallax);
         ticking = true;
     }
+    
+    // Clear timeout nếu có
+    if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+    }
+    
+    // Sau khi scroll dừng, cleanup will-change
+    scrollTimeout = setTimeout(() => {
+        const parallaxElements = document.querySelectorAll('.confetti-bg');
+        parallaxElements.forEach(element => {
+            element.style.willChange = 'auto';
+        });
+    }, 150);
 }, { passive: true });
 
 // Add pulse animation CSS
@@ -209,9 +232,5 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Thêm hiệu ứng khi scroll đến từng section - đơn giản hóa để tránh bug
-const sections = document.querySelectorAll('.section');
-sections.forEach(section => {
-    section.style.opacity = '1';
-    section.style.willChange = 'auto';
-});
+// Tối ưu sections - không cần set opacity và will-change nữa
+// Sections đã được tối ưu trong CSS
