@@ -812,6 +812,9 @@ body {
     text-align: center;
     font-weight: bold;
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .calendar-day.header {
